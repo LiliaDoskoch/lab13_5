@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Генерація кольорових квадратів</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffccbc, #ffe0b2);
+            color: #333;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #f57c00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ef6c00;
+        }
+        .square {
+            display: inline-block;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        .square:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>    
+<body>
+    <div class="container">
+        <h1>Генерація кольорових квадратів</h1>
+        <p>Натисніть кнопку, щоб створити кольорові квадрати!</p>
+        <button class="button" onclick="generateSquares()">Створити квадрати</button>
+        <div id="squaresContainer"></div>
+    </div>
+
+    <script>
+        "use strict";
+        function generateSquare(size = 100, color = 'blue') {
+            const square = document.createElement('div');
+            square.className = 'square';
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
+            square.style.backgroundColor = color;
+            return square;
+        }
+        function generateSquares() {
+            const container = document.getElementById('squaresContainer');
+            container.innerHTML = ''; 
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFD633'];
+            for (let i = 0; i < 5; i++) {
+                const size = Math.floor(Math.random() * 100) + 50; 
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(generateSquare(size, color));
+            }
+        }
+    </script>
+</body>
+</html>
